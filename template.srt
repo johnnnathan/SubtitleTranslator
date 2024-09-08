@@ -1,0 +1,16 @@
+1
+00:00:01,000 --> 00:00:04,000
+This is the first subtitle.
+It spans multiple lines
+to show how it works.
+
+2
+00:00:05,000 --> 00:00:08,000
+Here is the second subtitle,
+which also has multiple lines.
+You can add as many lines as needed.
+
+3
+00:00:10,000 --> 00:00:12,000
+And this is the third subtitle.
+It is short and simple.
