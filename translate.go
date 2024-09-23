@@ -16,28 +16,6 @@ var (
     sourceLanguage string
 )
 
-func main() {
-    intermediateSourceLanguage := flag.String("srclang", "en", "Source language (e.g., 'en' for English)")
-    intermediateDestinationLanguage := flag.String("destlang", "el", "Destination language (e.g., 'el' for Greek)")
-
-    flag.Parse()
-
-    sourceLanguage = strings.ToLower(*intermediateSourceLanguage)    // Dereference the pointer
-    destLanguage = strings.ToLower(*intermediateDestinationLanguage) // Dereference the pointer
-
-    // Print out the parsed language codes
-    fmt.Printf("Source Language: %s\n", sourceLanguage)
-    fmt.Printf("Destination Language: %s\n", destLanguage)
-
-    // Read the file
-    text, booleanMap := readFile("/home/dimi/Desktop/Projects/SubtitleTranslator/John.Wick.2014.720p.BluRay.x264.YIFY.en.srt")
-
-    // Translate the text
-    translatedText := translateText(text, booleanMap)
-
-    // Write the translated text to file
-    writeFile(translatedText)
-}
 
 // Read the file and extract strings for translation
 func readFile(path string) ([]string, []bool) {
@@ -111,4 +89,32 @@ func writeFile(translatedText []string) {
             log.Fatal(err)
         }
     }
+}
+
+
+
+
+
+func main() {
+  intermediateSourceLanguage := flag.String("srclang", "en", "Source language (e.g., 'en' for English)")
+  intermediateDestinationLanguage := flag.String("destlang", "el", "Destination language (e.g., 'el' for Greek)")
+  fileFlag := flag.String("file", "", "The relative path of the .srt file. Use the name if the file is in the same directory as the script.")
+
+  flag.Parse()
+
+  sourceLanguage = strings.ToLower(*intermediateSourceLanguage)    // Dereference the pointer
+  destLanguage = strings.ToLower(*intermediateDestinationLanguage) // Dereference the pointer
+
+  // Print out the parsed language codes
+  fmt.Printf("Source Language: %s\n", sourceLanguage)
+  fmt.Printf("Destination Language: %s\n", destLanguage)
+
+  // Read the file
+  text, booleanMap := readFile(*fileFlag)
+
+  // Translate the text
+  translatedText := translateText(text, booleanMap)
+
+  // Write the translated text to file
+  writeFile(translatedText)
 }
